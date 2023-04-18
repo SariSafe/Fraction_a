@@ -14,6 +14,15 @@ namespace ariel
 
     class Fraction
     {
+    private:
+        const int _numerator;
+        const int _denominator;
+        /*greatest common divisor of the original values of two integeres.*/
+        int GCD(int, int);
+
+    public:
+        /*ctor*/
+        Fraction(int, int);
     };
 
 };
