@@ -7,7 +7,8 @@
 #include <iostream>
 #include <stdexcept>
 #include "Fraction.hpp"
-
+using namespace std;
+// using std::ostream, std::istream;
 namespace ariel
 {
 
@@ -42,6 +43,49 @@ namespace ariel
             num_0 = temp;
         }
         return num_0;
+    }
+    void Fraction::reduce()
+    {
+        int gcd = GCD(_numerator, _denominator);
+        _numerator /= gcd;
+        _denominator /= gcd;
+    }
+    // must pass the stream by reference, not by value. streams are not copyable
+    ostream &operator<<(ostream &out, const Fraction &other)
+    {
+        out << other._numerator << "/" << other._denominator << endl;
+        return out;
+    }
+    istream &operator>>(istream &into, Fraction &other)
+    {
+        into >> other._numerator >> other._denominator;
+        return into;
+    }
+    Fraction Fraction::operator+(const Fraction &other)
+    {
+        // default state and dont need of default constructor :)
+        Fraction result(0, 1);
+        result._numerator = (this->_numerator * other._numerator) + (this->_denominator * other._numerator);
+        result._denominator = (this->_denominator * other._denominator);
+        result.reduce();
+        return result;
+    }
+    float operator+(const Fraction &frac, float j)
+    {
+        return (j + frac);
+    }
+    float operator+(float j, const Fraction &frac)
+    {
+        return (j + frac);
+    }
+    Fraction Fraction::operator-(const Fraction &other)
+    {
+        return this->operator+(Fraction((other._numerator), -1 * other._denominator));
+    }
+
+    float operator-(float _add, const Fraction &other)
+    {
+        return _add + Fraction((other._numerator), -1 * other._denominator);
     }
 
 };
