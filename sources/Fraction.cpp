@@ -21,6 +21,7 @@ namespace ariel
             throw " cannot be 0 .";
         }
     }
+
     /**
      * @param input two integeres(num_0, num_1)
      * @param return gcd(num_0,num_1)
@@ -44,23 +45,27 @@ namespace ariel
         }
         return num_0;
     }
+
     void Fraction::reduce()
     {
         int gcd = GCD(_numerator, _denominator);
         _numerator /= gcd;
         _denominator /= gcd;
     }
+
     // must pass the stream by reference, not by value. streams are not copyable
     ostream &operator<<(ostream &out, const Fraction &other)
     {
         out << other._numerator << "/" << other._denominator << endl;
         return out;
     }
+
     istream &operator>>(istream &into, Fraction &other)
     {
         into >> other._numerator >> other._denominator;
         return into;
     }
+
     Fraction Fraction::operator+(const Fraction &other)
     {
         // default state and dont need of default constructor :)
@@ -70,22 +75,88 @@ namespace ariel
         result.reduce();
         return result;
     }
+
+    float operator+(float j, const Fraction &frac)
+    {
+        return ((frac._numerator) + (j * frac._denominator)) / (frac._denominator);
+    }
+
     float operator+(const Fraction &frac, float j)
     {
         return (j + frac);
     }
-    float operator+(float j, const Fraction &frac)
+
+    // here we use the + operator to subscracts
+    Fraction Fraction::operator-(const Fraction &frac)
     {
-        return (j + frac);
-    }
-    Fraction Fraction::operator-(const Fraction &other)
-    {
-        return this->operator+(Fraction((other._numerator), -1 * other._denominator));
+        return this->operator+(Fraction(-1 * (frac._numerator), frac._denominator));
     }
 
-    float operator-(float _add, const Fraction &other)
+    float operator-(float num, const Fraction &frac)
     {
-        return _add + Fraction((other._numerator), -1 * other._denominator);
+        return num + Fraction(-1 * (frac._numerator), frac._denominator);
     }
+
+    float operator-(const Fraction &other, float num)
+    {
+        return -1 * (other - num);
+    }
+
+    Fraction Fraction::operator*(const Fraction &other)
+    {
+        // default state and dont need of default constructor :)
+        Fraction result(0, 1);
+        result._numerator = (this->_numerator * other._numerator);
+        result._denominator = (this->_denominator * other._denominator);
+        result.reduce();
+        return result;
+    }
+
+    float operator*(float num, const Fraction &frac)
+    {
+        return (num * frac._numerator) / frac._denominator;
+    }
+
+    float operator*(const Fraction &frac, float num)
+    {
+        return num * frac;
+    }
+
+    Fraction Fraction::operator/(const Fraction &other)
+    {
+        // use something already done.
+        return this->operator*(Fraction(other._denominator, other._numerator));
+    }
+
+    float operator/(float num, const Fraction &frac)
+    {
+        return frac._numerator / (frac._numerator * num);
+    }
+
+    float operator/(const Fraction &frac, float num)
+    {
+        return 1 / (num * (1 / frac));
+    }
+
+    bool Fraction::operator==(const Fraction &other)
+    {
+        // here we can multiply or add , subtraction to check if equal'ss
+        bool t = (this->_numerator + this->_denominator == other._numerator + other._denominator);
+        return t;
+    }
+
+    float operator==(float num, const Fraction &frac)
+    {
+        return (num*frac._denominator == frac._numerator);
+
+    }
+
+    float operator==(const Fraction &frac, float num)
+    {
+        return frac == num ;
+    }
+
+
+    
 
 };
