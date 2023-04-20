@@ -1,5 +1,5 @@
 /**
- *declare about implemention and logic of the structure of program
+ *declare about implemention and logic of the structure  program
  *@author Sari Safe
  *@since 16.04.23
  */
@@ -8,7 +8,7 @@
 #include <stdexcept>
 #include "Fraction.hpp"
 using namespace std;
-// using std::ostream, std::istream;
+
 namespace ariel
 {
 
@@ -140,23 +140,116 @@ namespace ariel
 
     bool Fraction::operator==(const Fraction &other)
     {
-        // here we can multiply or add , subtraction to check if equal'ss
-        bool t = (this->_numerator + this->_denominator == other._numerator + other._denominator);
-        return t;
+        // need to check
+        bool b = (this->_numerator + other._denominator == other._numerator + this->_denominator);
+        return b;
     }
-
+    // prepare for check.
     float operator==(float num, const Fraction &frac)
     {
-        return (num*frac._denominator == frac._numerator);
-
+        return (num * frac._denominator == frac._numerator);
     }
 
     float operator==(const Fraction &frac, float num)
     {
-        return frac == num ;
+        return frac == num;
+    }
+    // prepare for check.
+    bool Fraction::operator<(const Fraction &other)
+    {
+        bool b = (this->_numerator + other._denominator < other._numerator + this->_denominator);
+        return b;
     }
 
+    // prepare for check.
+    float operator<(const Fraction &frac, float num)
+    {
+        bool b = num < frac;
+        return b;
+    }
 
-    
+    // prepare for check.
+    float operator<(float num, const Fraction &frac)
+    {
+        bool b = frac._numerator < num * frac._denominator;
+        return b;
+    }
+    // prepare for check.
+    bool Fraction::operator<=(const Fraction &other)
+    {
+        bool b = (this->_numerator + other._denominator <= other._numerator + this->_denominator);
+        return b;
+    }
+    // prepare for check.
+    float operator<=(const Fraction &frac, float num)
+    {
+        bool b = num <= frac;
+        return b;
+    }
+    // prepare for check.
+    float operator<=(float num, const Fraction &frac)
+    {
+        bool b = frac._numerator <= num * frac._denominator;
+        return b;
+    }
+    // prepare for check.
+    bool Fraction::operator>(const Fraction &other)
+    {
+        bool b = (this->_numerator + other._denominator > other._numerator + this->_denominator);
+        return b;
+    }
 
+    // prepare for check.
+    float operator>(const Fraction &frac, float num)
+    {
+        bool b = num > frac;
+        return b;
+    }
+
+    // prepare for check.
+    float operator>(float num, const Fraction &frac)
+    {
+        bool b = frac._numerator > num * frac._denominator;
+        return b;
+    }
+    // prepare for check.
+    bool Fraction::operator>=(const Fraction &other)
+    {
+        bool b = (this->_numerator + other._denominator >= other._numerator + this->_denominator);
+        return b;
+    }
+    // need to check isn't final implement there problem with final output
+    float operator>=(const Fraction &frac, float num)
+    {
+        bool b = num >= frac;
+        return b;
+    }
+    // need to check isn't final implement there problem with final output
+    float operator>=(float num, const Fraction &frac)
+    {
+        bool b = frac._numerator >= num * frac._denominator;
+        return b;
+    }
+    // prepare for check.
+    Fraction &Fraction::operator--()
+    {
+        Fraction th = *this;
+        --(*this);
+        return th;
+    }
+    Fraction Fraction::operator--(int)
+    {
+        // TODO: implement
+    }
+    Fraction Fraction ::operator++(int)
+    {
+
+        // TODO: implement
+    }
+
+    Fraction &Fraction::operator++()
+    {
+
+      // TODO: implement   
+    }
 };
