@@ -21,6 +21,15 @@ namespace ariel
             throw " cannot be 0 .";
         }
     }
+    ariel::Fraction fractionFromFloat(float value)
+    {
+        int denominator = 100;
+        value *= 100;
+
+        Fraction f(value, denominator);
+        f.reduce();
+        return f;
+    }
 
     /**
      * @param input two integeres(num_0, num_1)
@@ -70,7 +79,7 @@ namespace ariel
     {
         // default state and dont need of default constructor :)
         Fraction result(0, 1);
-        result._numerator = (this->_numerator * other._numerator) + (this->_denominator * other._numerator);
+        result._numerator = (this->_numerator * other._denominator) + (this->_denominator * other._numerator);
         result._denominator = (this->_denominator * other._denominator);
         result.reduce();
         return result;
@@ -97,9 +106,10 @@ namespace ariel
         return num + Fraction(-1 * (frac._numerator), frac._denominator);
     }
 
-    float operator-(const Fraction &other, float num)
+    Fraction operator-(const Fraction &other, float num)
     {
-        return -1 * (other - num);
+
+        return fractionFromFloat(-num) + other;
     }
 
     Fraction Fraction::operator*(const Fraction &other)
@@ -233,23 +243,28 @@ namespace ariel
     // prepare for check.
     Fraction &Fraction::operator--()
     {
-        Fraction th = *this;
+        Fraction temp(*this);
         --(*this);
-        return th;
+        return *this;
     }
     Fraction Fraction::operator--(int)
     {
-        // TODO: implement
+        _numerator -= _denominator;
+        reduce();
+        return *this;
     }
     Fraction Fraction ::operator++(int)
     {
-
-        // TODO: implement
+        _numerator += _denominator;
+        reduce();
+        return *this;
     }
 
     Fraction &Fraction::operator++()
     {
 
-      // TODO: implement   
+        Fraction old(*this);
+        ++(*this);
+        return *this;
     }
 };
