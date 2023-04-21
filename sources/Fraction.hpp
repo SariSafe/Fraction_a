@@ -27,6 +27,8 @@ namespace ariel
 
     /*ctor*/
     Fraction(int, int);
+    Fraction fractionFromFloat(float);
+    //Fraction(float);
     /* istream and ostream */
     friend ostream &operator<<(ostream &, const Fraction &);
     friend istream &operator>>(istream &, Fraction &);
@@ -53,7 +55,7 @@ namespace ariel
     /*
      subtraction float and Fraction(float-Fractoin)
     */
-    friend float operator-(const Fraction &, float);
+    friend Fraction operator-(const Fraction &, float);
     /*
      multiply two Fractions
     */
@@ -141,7 +143,7 @@ namespace ariel
     /*
      increment Fractoin(Fractior++)
    */
-    Fraction operator++(int); 
+    Fraction operator++(int);
     /*
      increment Fractoin(++Fractior)
    */
