@@ -24,8 +24,8 @@ namespace ariel
     }
     Fraction fractionFromFloat(float value)
     {
-        int denominator = 100;
-        value *= 100;
+        int denominator = 1000;
+        value *= 1000;
         // here we use the ctor , and there validation of if deminator == 0
         Fraction f(value, denominator);
         f.reduce();
@@ -177,15 +177,14 @@ namespace ariel
 
     bool operator<(const Fraction &frac, float num)
     {
-       // cout << "num: " << ((double)(frac._numerator/frac._numerator))<< endl;
-        bool b = ((double)frac._numerator /(double) frac._denominator) < num;
+        bool b = (float)(frac._numerator / frac._denominator) < num;
         return b;
     }
 
     // prepare for check.
     bool operator<(float num, const Fraction &frac)
     {
-        bool b = num < frac._numerator / frac._denominator;
+        bool b = num < (float)(frac._numerator / frac._denominator);
         return b;
     }
     // prepare for check.
@@ -224,19 +223,19 @@ namespace ariel
         bool b = num > frac._numerator / frac._denominator;
         return b;
     }
-    // prepare for check.
+
     bool Fraction::operator>=(const Fraction &other)
     {
-        bool b = (this->_numerator + other._denominator >= other._numerator + this->_denominator);
+        bool b = (this->_numerator / this->_denominator) >= (other._numerator / other._denominator);
         return b;
     }
-    // need to check isn't final implement there problem with final output
+
     float operator>=(const Fraction &frac, float num)
     {
         bool b = num >= frac;
         return b;
     }
-    // need to check isn't final implement there problem with final output
+
     float operator>=(float num, const Fraction &frac)
     {
         bool b = frac._numerator >= num * frac._denominator;
@@ -246,7 +245,7 @@ namespace ariel
     Fraction &Fraction::operator--()
     {
         Fraction old(*this);
-        (*this)--;
+        (*this)--; //--(*this) need check the problem with that .
         return *this;
     }
     Fraction Fraction::operator--(int)
