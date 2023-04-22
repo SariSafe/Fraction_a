@@ -99,11 +99,11 @@ namespace ariel
     /*
       less than float and Fraction(Fractoin< float)
     */
-    friend float operator<(const Fraction &, float);
+    friend bool operator<(const Fraction &, float);
     /*
       less than float and Fraction(float <Fractoin)
     */
-    friend float operator<(float, const Fraction &);
+    friend bool operator<(float, const Fraction &);
     /*
       less than or equal Fractoin and Fraction(Fracion<=Fractoin)
     */

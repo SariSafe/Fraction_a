@@ -20,12 +20,13 @@ namespace ariel
         {
             throw " cannot be 0 .";
         }
+        reduce();
     }
-    ariel::Fraction fractionFromFloat(float value)
+    Fraction fractionFromFloat(float value)
     {
         int denominator = 100;
         value *= 100;
-
+        // here we use the ctor , and there validation of if deminator == 0
         Fraction f(value, denominator);
         f.reduce();
         return f;
@@ -124,6 +125,7 @@ namespace ariel
 
     float operator*(float num, const Fraction &frac)
     {
+        // 1. here we can be confidence that there no divided  with 0
         return (num * frac._numerator) / frac._denominator;
     }
 
@@ -135,29 +137,31 @@ namespace ariel
     Fraction Fraction::operator/(const Fraction &other)
     {
         // use something already done.
+        // 1. here too.
         return this->operator*(Fraction(other._denominator, other._numerator));
     }
 
     float operator/(float num, const Fraction &frac)
     {
+        // 1. here too.
         return frac._numerator / (frac._numerator * num);
     }
 
     float operator/(const Fraction &frac, float num)
     {
-        return 1 / (num * (1 / frac));
+        return (num * frac);
     }
 
     bool Fraction::operator==(const Fraction &other)
     {
-        // need to check
-        bool b = (this->_numerator + other._denominator == other._numerator + this->_denominator);
+        bool b = (this->_numerator == other._numerator) && (other._denominator == this->_denominator);
         return b;
     }
-    // prepare for check.
+
     float operator==(float num, const Fraction &frac)
     {
-        return (num * frac._denominator == frac._numerator);
+        float num_0 = frac._denominator / frac._numerator;
+        return (num == num_0);
     }
 
     float operator==(const Fraction &frac, float num)
@@ -167,27 +171,27 @@ namespace ariel
     // prepare for check.
     bool Fraction::operator<(const Fraction &other)
     {
-        bool b = (this->_numerator + other._denominator < other._numerator + this->_denominator);
+        bool b = (this->_numerator / this->_denominator < other._numerator / other._denominator);
+        return b;
+    }
+
+    bool operator<(const Fraction &frac, float num)
+    {
+       // cout << "num: " << ((double)(frac._numerator/frac._numerator))<< endl;
+        bool b = ((double)frac._numerator /(double) frac._denominator) < num;
         return b;
     }
 
     // prepare for check.
-    float operator<(const Fraction &frac, float num)
+    bool operator<(float num, const Fraction &frac)
     {
-        bool b = num < frac;
-        return b;
-    }
-
-    // prepare for check.
-    float operator<(float num, const Fraction &frac)
-    {
-        bool b = frac._numerator < num * frac._denominator;
+        bool b = num < frac._numerator / frac._denominator;
         return b;
     }
     // prepare for check.
     bool Fraction::operator<=(const Fraction &other)
     {
-        bool b = (this->_numerator + other._denominator <= other._numerator + this->_denominator);
+        bool b = (this->_numerator / this->_denominator) <= (other._numerator / other._denominator);
         return b;
     }
     // prepare for check.
@@ -202,24 +206,22 @@ namespace ariel
         bool b = frac._numerator <= num * frac._denominator;
         return b;
     }
-    // prepare for check.
+
     bool Fraction::operator>(const Fraction &other)
     {
-        bool b = (this->_numerator + other._denominator > other._numerator + this->_denominator);
+        bool b = (this->_numerator / this->_denominator) > (other._numerator / other._denominator);
         return b;
     }
 
-    // prepare for check.
     float operator>(const Fraction &frac, float num)
     {
         bool b = num > frac;
         return b;
     }
 
-    // prepare for check.
     float operator>(float num, const Fraction &frac)
     {
-        bool b = frac._numerator > num * frac._denominator;
+        bool b = num > frac._numerator / frac._denominator;
         return b;
     }
     // prepare for check.
@@ -243,8 +245,8 @@ namespace ariel
     // prepare for check.
     Fraction &Fraction::operator--()
     {
-        Fraction temp(*this);
-        --(*this);
+        Fraction old(*this);
+        (*this)--;
         return *this;
     }
     Fraction Fraction::operator--(int)
