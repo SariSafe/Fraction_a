@@ -23,12 +23,15 @@ namespace ariel
 
   public:
     // help function
-    void reduce();
+    void simplify();
+    // getters
+    const int numerator();
+    const int denominator();
 
     /*ctor*/
     Fraction(int, int);
-    Fraction fractionFromFloat(float);
-    //Fraction(float);
+    // convert float to fraction
+    Fraction Float_to_Fraction(float);
     /* istream and ostream */
     friend ostream &operator<<(ostream &, const Fraction &);
     friend istream &operator>>(istream &, Fraction &);
@@ -83,15 +86,15 @@ namespace ariel
     /*
      equallity two Fractions
     */
-    bool operator==(const Fraction &);
+    bool operator==(const Fraction &) const;
     /*
       equallity float and Fraction(Fractoin == float)
     */
-    friend float operator==(float, const Fraction &);
+    friend bool operator==(float, const Fraction &);
     /*
       equallity float and Fraction(float == Fractoin)
     */
-    friend float operator==(const Fraction &, float);
+    friend bool operator==(const Fraction &, float);
     /*
       less than float and Fraction(Fractoin < Fractoin)
     */
@@ -111,11 +114,11 @@ namespace ariel
     /*
       less than or equal float and Fraction(float<=Fractoin)
     */
-    friend float operator<=(float, const Fraction &);
+    friend bool operator<=(float, const Fraction &);
     /*
       less than or equal float and Fraction(Fractoin<=float)
     */
-    friend float operator<=(const Fraction &, float); // Fraction <= float
+    friend bool operator<=(const Fraction &, float);
     /*
       greater Fractoin and Fractoin(Fractoin<Fractoin)
     */
@@ -123,11 +126,11 @@ namespace ariel
     /*
       greater float and Fractoin(float<Fractoin)
     */
-    friend float operator>(float, const Fraction &);
+    friend bool operator>(float, const Fraction &);
     /*
       greater Fractoin and float(float>Fractoin)
     */
-    friend float operator>(const Fraction &, float);
+    friend bool operator>(const Fraction &, float);
     /*
       greater than or equal Fractoin and float(float=>Fractoin)
      */
@@ -135,11 +138,11 @@ namespace ariel
     /*
       greater than or equal Fractoin and float(float=>Fractoin)
      */
-    friend float operator>=(float, const Fraction &);
+    friend bool operator>=(float, const Fraction &);
     /*
       greater than or equal Fractoin and float(Fractoin=>float)
      */
-    friend float operator>=(const Fraction &, float);
+    friend bool operator>=(const Fraction &, float);
     /*
      increment Fractoin(Fractior++)
    */
