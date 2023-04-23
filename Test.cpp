@@ -75,4 +75,14 @@ TEST_CASE(" sequence of operations")
     CHECK(b1 == true);
     CHECK_FALSE(b2 == false);
     CHECK_FALSE(b3 == false);
+
+    Fraction c0(4, 1);  // 4
+    Fraction c1(6, 3);  // 2
+    Fraction c2(27, 9); // 3
+
+    CHECK((c0 * c1 * c2) == 24);
+    CHECK((c0 * c1 + c2) == 11);
+    CHECK(c0 - (c1 * c2) == -2);
+    CHECK((c0 - c1) * c2 == 6);
+    CHECK(-1 * c0 + c1 - c2 == -5);
 }

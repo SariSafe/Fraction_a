@@ -189,7 +189,7 @@ namespace ariel
 
     bool operator==(const Fraction &frac, float num)
     {
-        return frac == num;
+        return (frac == num);
     }
 
     bool Fraction::operator<(const Fraction &other)
