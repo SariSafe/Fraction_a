@@ -3,10 +3,10 @@
 #include <iostream>
 #include <stdexcept>
 
-using std::endl;
+using std::endl, std::cout;
 using namespace ariel;
 
-TEST_CASE(" edge cases ")
+TEST_CASE(" edge cases and  safe c'tors  ")
 {
 
     CHECK_THROWS(Fraction(0, 0));
