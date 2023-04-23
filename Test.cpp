@@ -88,9 +88,9 @@ TEST_CASE(" sequence of operations")
     Fraction c1(6, 3);  // 2
     Fraction c2(27, 9); // 3
 
-    CHECK((c0 * c1 * c2) == 24);
-    CHECK((c0 * c1 + c2) == 11);
-    CHECK(c0 - (c1 * c2) == -2);
-    CHECK((c0 - c1) * c2 == 6);
-    CHECK(-1 * c0 + c1 - c2 == -5);
+    CHECK((c0 * c1 * c2) == Fraction(24,1));
+    CHECK((c0 * c1 + c2) == Fraction(11,1));
+    CHECK(c0 - (c1 * c2) == Fraction(-2,1));
+    CHECK((c0 - c1) * c2 == Fraction(6,1));
+    CHECK(-1 * c0 + c1 - c2 == Fraction(-5,1));
 }
