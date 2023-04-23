@@ -12,8 +12,8 @@ using std::ostream, std::istream, std::endl, std::cout;
 namespace ariel
 {
 
-    Fraction::Fraction(const int numerator,
-                       const int denominator) : _numerator(numerator), _denominator(denominator)
+    Fraction::Fraction( int numerator,
+                        int denominator) : _numerator(numerator), _denominator(denominator)
     {
         // possibility div by 0 !
         if (_denominator == 0)
