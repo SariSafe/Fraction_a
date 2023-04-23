@@ -136,7 +136,7 @@ namespace ariel
     float operator*(float num, const Fraction &frac)
     {
         // 1. here we can be confidence that there no divided  with 0
-        return ((num * frac._numerator) / frac._denominator);
+        return ((float)(num * frac._numerator) / frac._denominator);
     }
 
     float operator*(const Fraction &frac, float num)
@@ -164,7 +164,7 @@ namespace ariel
             throw " the by 0 is not defined !";
         }
         // 1. here too.
-        return frac._numerator / (frac._denominator * num);
+        return ((float)frac._numerator / (float)(frac._denominator * num));
     }
 
     float operator/(const Fraction &frac, float num)
@@ -173,7 +173,7 @@ namespace ariel
         {
             throw " there no result to divide in zero ";
         }
-        return (frac / num);
+        return ((float)(frac / num));
     }
 
     bool Fraction::operator==(const Fraction &other) const
@@ -183,7 +183,7 @@ namespace ariel
 
     bool operator==(float num, const Fraction &frac)
     {
-        float num_0 = frac._denominator / frac._numerator;
+        float num_0 = (float)(frac._denominator / frac._numerator);
         return (num == num_0);
     }
 
@@ -194,7 +194,7 @@ namespace ariel
 
     bool Fraction::operator<(const Fraction &other)
     {
-        return (this->_numerator / this->_denominator) < (other._numerator / other._denominator);
+        return (float)(this->_numerator / this->_denominator) < (float)(other._numerator / other._denominator);
     }
 
     bool operator<(const Fraction &frac, float num)
@@ -213,7 +213,7 @@ namespace ariel
     bool Fraction::operator<=(const Fraction &other)
     {
 
-        return (this->_numerator / this->_denominator) <= (other._numerator / other._denominator);
+        return (float)(this->_numerator / this->_denominator) <= (float)(other._numerator / other._denominator);
     }
 
     bool operator<=(const Fraction &frac, float num)
@@ -230,20 +230,19 @@ namespace ariel
 
     bool Fraction::operator>(const Fraction &other)
     {
-        bool b = (this->_numerator / this->_denominator) > (other._numerator / other._denominator);
-        return b;
+        return (float)(this->_numerator / this->_denominator) > (float)(other._numerator / other._denominator);
     }
 
     bool operator>(const Fraction &frac, float num)
     {
 
-        return num > frac;
+        return (num > frac);
     }
 
     bool operator>(float num, const Fraction &frac)
     {
 
-        return num > frac._numerator / frac._denominator;
+        return (num > frac._numerator / frac._denominator);
     }
 
     bool Fraction::operator>=(const Fraction &other)
@@ -255,15 +254,15 @@ namespace ariel
     bool operator>=(const Fraction &frac, float num)
     {
 
-        return num >= frac;
+        return (num >= frac);
     }
 
     bool operator>=(float num, const Fraction &frac)
     {
 
-        return frac._numerator >= num * frac._denominator;
+        return (frac._numerator >= num * frac._denominator);
     }
-    // prepare for check.
+
     Fraction &Fraction::operator--()
     {
         Fraction old(*this); // here we save a copy for object(old Fraction)
