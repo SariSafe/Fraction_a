@@ -164,7 +164,7 @@ namespace ariel
             throw " the by 0 is not defined !";
         }
         // 1. here too.
-        return frac._numerator / (frac._numerator * num);
+        return frac._numerator / (frac._denominator * num);
     }
 
     float operator/(const Fraction &frac, float num)
