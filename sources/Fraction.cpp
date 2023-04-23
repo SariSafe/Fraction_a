@@ -98,7 +98,7 @@ namespace ariel
 
     float operator+(float j, const Fraction &frac)
     {
-        return ((frac._numerator) + (j * frac._denominator)) / (frac._denominator);
+        return ((frac._numerator + (j * frac._denominator)) / (frac._denominator));
     }
 
     float operator+(const Fraction &frac, float j)
@@ -136,7 +136,7 @@ namespace ariel
     float operator*(float num, const Fraction &frac)
     {
         // 1. here we can be confidence that there no divided  with 0
-        return (num * frac._numerator) / frac._denominator;
+        return ((num * frac._numerator) / frac._denominator);
     }
 
     float operator*(const Fraction &frac, float num)
