@@ -9,7 +9,7 @@
 
 #include <iostream>
 
-using namespace std;
+using std::istream, std::ostream;
 namespace ariel
 {
 
@@ -25,11 +25,11 @@ namespace ariel
     // help function
     void simplify();
     // getters
-    const int numerator();
-    const int denominator();
+    int numerator() const;
+    int denominator() const;
 
     /*ctor*/
-    Fraction(int, int);
+    Fraction(const int, const int);
     // convert float to fraction
     Fraction Float_to_Fraction(float);
     /* istream and ostream */
