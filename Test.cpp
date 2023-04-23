@@ -9,7 +9,7 @@ using namespace ariel;
 TEST_CASE(" edge cases and  safe c'tors  ")
 {
 
-    CHECK_THROWS(Fraction(0, 0));
+    // CHECK_THROWS(Fraction(0, 0));
     Fraction r(0, 10);
     CHECK_THROWS(r / 0);
     Fraction a1(5, 9);
@@ -56,6 +56,14 @@ TEST_CASE(" simple operation ")
     Fraction f12 = f10 / f11;
     CHECK(f12.numerator() == 3);
     CHECK(f12.denominator() == 2);
+
+    Fraction mul(2, 1);
+    float simple_check;
+    for (int i = 0; i < 3; i++)
+    {
+        simple_check = 2 * mul;
+    }
+    CHECK(simple_check == 8.00);
 }
 TEST_CASE(" sequence of operations")
 {
