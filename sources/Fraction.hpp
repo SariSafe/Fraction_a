@@ -42,11 +42,11 @@ namespace ariel
     /*
       additon Fraction and flaot(Fractoin+float)
     */
-    friend float operator+(const Fraction &, float);
+    friend Fraction operator+(const Fraction &, float);
     /*
       additon Fraction and flaot(float+Fractoin)
     */
-    friend float operator+(float, const Fraction &);
+    friend Fraction operator+(float, const Fraction &);
     /*
       subtraction two Fractions
     */
@@ -54,7 +54,7 @@ namespace ariel
     /*
      subtraction float and Fraction(Fractoin-float)
     */
-    friend float operator-(float, const Fraction &);
+    friend Fraction operator-(float, const Fraction &);
     /*
      subtraction float and Fraction(float-Fractoin)
     */
@@ -66,11 +66,11 @@ namespace ariel
     /*
       multiply float and Fraction(Fractoin*float) - there no exist in demo examples
     */
-    friend float operator*(float, const Fraction &);
+    friend Fraction operator*(float, const Fraction &);
     /*
      multiply float and Fraction(float*Fractoin) - there no exist in demo examples
     */
-    friend float operator*(const Fraction &, float);
+    friend Fraction operator*(const Fraction &, float);
     /*
       divison two Fractions
      */
@@ -78,11 +78,11 @@ namespace ariel
     /*
       divison float and Fraction(Fractoin/float)
      */
-    friend float operator/(float, const Fraction &);
+    friend Fraction operator/(float, const Fraction &);
     /*
       divison float and Fraction(float/Fractoin)
     */
-    friend float operator/(const Fraction &, float);
+    friend Fraction operator/(const Fraction &, float);
     /*
      equallity two Fractions
     */

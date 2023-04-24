@@ -12,8 +12,8 @@ using std::ostream, std::istream, std::endl, std::cout;
 namespace ariel
 {
 
-    Fraction::Fraction( int numerator,
-                        int denominator) : _numerator(numerator), _denominator(denominator)
+    Fraction::Fraction(int numerator,
+                       int denominator) : _numerator(numerator), _denominator(denominator)
     {
         // possibility div by 0 !
         if (_denominator == 0)
@@ -96,14 +96,14 @@ namespace ariel
         return result;
     }
 
-    float operator+(float j, const Fraction &frac)
+    Fraction operator+(float j, const Fraction &frac)
     {
-        return ((float)(frac._numerator + (j * frac._denominator)) / (float)(frac._denominator));
+        return (Float_to_Fraction(j) + frac);
     }
 
-    float operator+(const Fraction &frac, float j)
+    Fraction operator+(const Fraction &frac, float j)
     {
-        return (j + frac);
+        return (Float_to_Fraction(j) + frac);
     }
 
     // here we use the + operator to subscracts
@@ -112,9 +112,9 @@ namespace ariel
         return this->operator+(Fraction(-1 * (frac._numerator), frac._denominator));
     }
 
-    float operator-(float num, const Fraction &frac)
+    Fraction operator-(float num, const Fraction &frac)
     {
-        return num + Fraction(-1 * (frac._numerator), frac._denominator);
+        return Float_to_Fraction(num) + Fraction(-1 * (frac._numerator), frac._denominator);
     }
 
     Fraction operator-(const Fraction &other, float num)
@@ -133,15 +133,15 @@ namespace ariel
         return result;
     }
 
-    float operator*(float num, const Fraction &frac)
+    Fraction operator*(float num, const Fraction &frac)
     {
         // 1. here we can be confidence that there no divided  with 0
-        return ((float)(num * frac._numerator) / (float)frac._denominator);
+        return Float_to_Fraction(num) * frac;
     }
 
-    float operator*(const Fraction &frac, float num)
+    Fraction operator*(const Fraction &frac, float num)
     {
-        return num * frac;
+        return Float_to_Fraction(num) * frac;
     }
 
     Fraction Fraction::operator/(const Fraction &other)
@@ -157,24 +157,26 @@ namespace ariel
         return this->operator*(Fraction(other._denominator, other._numerator));
     }
 
-    float operator/(float num, const Fraction &frac)
+    Fraction operator/(float num, const Fraction &frac)
     {
         if (frac._numerator == 0)
         {
             throw " the by 0 is not defined !";
         }
+
         // 1. here too.
-        return ((float)frac._numerator / (float)(frac._denominator * num));
+
+        return Float_to_Fraction(num) * Fraction(frac._denominator, frac._numerator);
     }
 
-    float operator/(const Fraction &frac, float num)
+    Fraction operator/(const Fraction &frac, float num)
     {
         if (num == 0)
         {
             throw " there no result to divide in zero ";
         }
 
-        return ((float)(frac._numerator / frac._denominator * num));
+        return (frac / num);
     }
 
     bool Fraction::operator==(const Fraction &other) const
@@ -275,7 +277,7 @@ namespace ariel
         //_numerator += _denominator;
         Fraction min_copy = *this;
         --(*this);
-        //simplify();
+        // simplify();
         return min_copy;
     }
     Fraction Fraction ::operator++(int)
@@ -283,7 +285,7 @@ namespace ariel
         //_numerator += _denominator;
         Fraction p_copy = *this;
         ++(*this);
-        //simplify();
+        // simplify();
         return p_copy;
     }
 
