@@ -272,15 +272,19 @@ namespace ariel
     }
     Fraction Fraction::operator--(int)
     {
-        _numerator -= _denominator;
-        simplify();
-        return *this;
+        //_numerator += _denominator;
+        Fraction min_copy = *this;
+        --(*this);
+        //simplify();
+        return min_copy;
     }
     Fraction Fraction ::operator++(int)
     {
-        _numerator += _denominator;
-        simplify();
-        return *this;
+        //_numerator += _denominator;
+        Fraction p_copy = *this;
+        ++(*this);
+        //simplify();
+        return p_copy;
     }
 
     Fraction &Fraction::operator++()
