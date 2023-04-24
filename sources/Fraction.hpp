@@ -29,7 +29,7 @@ namespace ariel
     int denominator() const;
 
     /*ctor*/
-    Fraction(const int, const int);
+    Fraction(int, int);
     // convert float to fraction
     Fraction Float_to_Fraction(float);
     /* istream and ostream */
