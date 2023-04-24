@@ -237,13 +237,13 @@ namespace ariel
     bool operator>(const Fraction &frac, float num)
     {
 
-        return (num > frac);
+        return (((float)frac._numerator / (float)frac._denominator) > num);
     }
 
     bool operator>(float num, const Fraction &frac)
     {
 
-        return (num > (float)frac._numerator / (float)frac._denominator);
+        return (num > ((float)frac._numerator / (float)frac._denominator));
     }
 
     bool Fraction::operator>=(const Fraction &other)
