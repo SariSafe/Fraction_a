@@ -176,7 +176,7 @@ namespace ariel
             throw " there no result to divide in zero ";
         }
 
-        return (frac / num);
+        return (Float_to_Fraction(num) * Fraction(frac._denominator, frac._numerator));
     }
 
     bool Fraction::operator==(const Fraction &other) const
@@ -275,7 +275,7 @@ namespace ariel
     Fraction Fraction::operator--(int dumy_flag_for_increment)
     {
         //_numerator += _denominator;
-        Fraction min_copy = *this;
+        Fraction min_copy(*this);
         _numerator -= _denominator;
         // simplify();
         return min_copy;
@@ -283,7 +283,7 @@ namespace ariel
     Fraction Fraction ::operator++(int dumy_flag_for_increment)
     {
         //_numerator += _denominator;
-        Fraction p_copy = *this;
+        Fraction p_copy(*this);
         _numerator += _denominator;
         // simplify();
         return p_copy;
