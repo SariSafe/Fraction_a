@@ -176,7 +176,7 @@ namespace ariel
             throw " there no result to divide in zero ";
         }
 
-        return (Float_to_Fraction(num) * Fraction(frac._denominator, frac._numerator));
+        return (Fraction(frac._numerator, frac._denominator) / Float_to_Fraction(num));
     }
 
     bool Fraction::operator==(const Fraction &other) const
